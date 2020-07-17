@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:300,500,700');
+
+        body {
+            background: #2C2F33;
+            margin: 0px;
+            padding: 0px;
+            width: 400px;
+            height: 350px;
+            color: white;
+            font-family: 'montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        button {
+            position: relative;
+            display: block;
+            border: 0px;
+            box-shadow: 0px;
+            background: #7289DA;
+            color: white;
+            border-radius: 5px;
+            height: 40px;
+            width: 80px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        form {
+            width: 90%;
+            margin: 80px 5% 0px 5%;
+            padding-bottom: 5%;
+        }
+
+        form input {
+            background: transparent;
+            border: 1px solid #7289DA;
+            border-radius: 5px;
+            box-shadow: 0px;
+            height: 30px;
+            color: white;
+        }
+
+        form label,
+        form input {
+            width: 100%;
+            margin: 5px 0px;
+        }
+
+        #saveSettings {
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .centered {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bold {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="settings">
+        <label for="webhookUrl" class="bold">Webhook URL</label>
+        <input type="text" id="webhookUrl" name="webhookUrl">
+
+        <p id="webhookInfo"></p>
+    </form>
+    <button id="saveSettings" class="centered">Save</button>
+    <script src="popup.js"></script>
+</body>
+
+</html>
