@@ -8,6 +8,6 @@ This is a basic project that can be loaded as a Google Chrome extension to be us
 
 ## Message Example
 
-![message](message.png)
+![updated_message](updated_message.png)
 
 It pulls your character's name and avatar from the page, as well as your DnDBeyond username and icon.
