@@ -50,42 +50,41 @@ const callback = function (mutationsList, observer) {
 
           const message = {
             username: "DnDiscord",
+            avatar_url: "",
             embeds: [
               {
-                author: {
-                  name: "",
-                  icon_url: "",
-                },
+                // author: {
+                //   name: "",
+                //   icon_url: "",
+                // },
                 title: "",
-                description: "",
+                // description: "",
                 fields: [],
                 color: "",
-                timestamp: new Date(),
-                footer: {
-                  icon_url: actualUserPic,
-                  text: `From ${actualUser} on DnDBeyond`,
-                },
+                // timestamp: new Date(),
+                // footer: {
+                //   icon_url: actualUserPic,
+                //   text: `From ${actualUser} on DnDBeyond`,
+                // },
               },
             ],
           };
 
+          let characterName = '';
           const characterNameDivs = document.getElementsByClassName(
             "ddbc-character-name"
           );
           if (characterNameDivs.length) {
-            message.embeds[0].author.name = characterNameDivs[0].textContent;
+            // message.embeds[0].author.name = characterNameDivs[0].textContent;
+            characterName = characterNameDivs[0].textContent;
           }
 
+          let characterPic = '';
           const profilePicDivs = document.getElementsByClassName(
             "ddbc-character-avatar__portrait"
           );
           if (profilePicDivs.length) {
-            message.avatarUrl = profilePicDivs[0].style.backgroundImage.split(
-              '"'
-            )[1];
-            message.embeds[0].author.icon_url = profilePicDivs[0].style.backgroundImage.split(
-              '"'
-            )[1];
+            characterPic = profilePicDivs[0].style.backgroundImage.split('"')[1];
           }
 
           diceNotifications.forEach((diceNotification) => {
@@ -124,10 +123,6 @@ const callback = function (mutationsList, observer) {
             );
             if (rollNotationDivs.length) {
               rollNotation = rollNotationDivs[0].innerHTML;
-              message.embeds[0].fields.push({
-                name: "Rolled",
-                value: rollNotation,
-              });
             }
 
             let rollBreakdown = "";
@@ -136,10 +131,6 @@ const callback = function (mutationsList, observer) {
             );
             if (rollBreakdownDivs.length) {
               rollBreakdown = rollBreakdownDivs[0].innerHTML;
-              message.embeds[0].fields.push({
-                name: "Breakdown",
-                value: rollBreakdown,
-              });
             }
 
             let rollTotal = "";
@@ -148,10 +139,6 @@ const callback = function (mutationsList, observer) {
             );
             if (rollTotalDivs.length) {
               rollTotal = rollTotalDivs[0].innerHTML;
-              message.embeds[0].fields.push({
-                name: "TOTAL",
-                value: `${rollTotal}`,
-              });
             }
 
             let rollTotalHeader = "";
@@ -168,9 +155,22 @@ const callback = function (mutationsList, observer) {
               );
             }
 
-            message.embeds[0].title = `TOTAL: ${rollTotal}`;
-            message.embeds[0].description = `${rollDetail.trim()} ${rollType} ${rollTotalHeader}`;
+            // message.embeds[0].title = `${rollDetail.trim()} ${rollType} ${rollTotalHeader}: ${rollTotal}`;
+            message.embeds[0].title = `${rollNotation} => ${rollBreakdown} => ${rollTotal}`;
+            // message.embeds[0].description = `${rollNotation} => ${rollBreakdown} => ${rollTotal}`;
             message.embeds[0].color = rollTypeColor;
+
+            message.username = `${characterName}         ${rollDetail.trim()} ${rollType} ${rollTotalHeader}: ${rollTotal}`;
+            message.avatar_url = characterPic;
+            // message.embeds[0].author.icon_url = characterPic;
+
+            // message.embeds[0].footer.text = characterName;
+            // message.embeds[0].footer.icon_url = characterPic;
+
+            // message.embeds[0].fields.push({
+            //   name: ``,
+            //   value: ``,
+            // });
 
             console.log(message);
 
